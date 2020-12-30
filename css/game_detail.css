@@ -1,0 +1,7 @@
+#member-performance-tbody input {
+    width: 45px;
+}
+
+#point-tbody input, #foul-tbody input {
+    width: 60px;
+}
