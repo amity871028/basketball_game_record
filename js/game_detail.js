@@ -38,7 +38,8 @@ async function editData(e){
     else {
         const memberPerformColumns = ["game_id", "number", "field_goal", "field_goal_attempt", "three_point_shot", "three_point_shot_attempt", "free_throw", "free_throw_attempt", "offensive_rebound", "defensive_rebound", "assist", "steal", "block_shot", "turnover", "foul"];
         const pointColumns = ["game_id", "team", "first_period_point", "second_period_point", "third_period_point", "fourth_period_point"];
-        
+        const foulColumns = ["game_id", "team", "first_period_foul", "second_period_foul", "third_period_foul", "fourth_period_foul"];
+
         // update fields
         for(let memberPerformDetailTr of memberPerformDetailTrs){
             let Tds = memberPerformDetailTr.cells;
@@ -59,7 +60,7 @@ async function editData(e){
             let tmp = {};
             tmp['func'] = 'point';
             tmp['game_id'] = id;
-            if(now == 0) tmp['team'] = 'host';
+            if(now == 0) tmp['team'] = 'home';
             else tmp['team'] = 'guest';
             now++;
             
@@ -67,9 +68,24 @@ async function editData(e){
                 let point = parseInt(Tds[i].children[0].value);
                 tmp[pointColumns[i+1]] = point;
             }
-            console.log(tmp);
             const result = await FetchData.post('./src/update_team_perform.php', tmp);
-            console.log(result);
+        }
+
+        now = 0;
+        for(let foulDetailTr of foulDetailTrs){
+            let Tds = foulDetailTr.cells;
+            let tmp = {};
+            tmp['func'] = 'foul';
+            tmp['game_id'] = id;
+            if(now == 0) tmp['team'] = 'home';
+            else tmp['team'] = 'guest';
+            now++;
+            
+            for(let i = 1; i < Tds.length; i++){
+                let point = parseInt(Tds[i].children[0].value);
+                tmp[foulColumns[i+1]] = point;
+            }
+            const result = await FetchData.post('./src/update_team_perform.php', tmp);
         }
         window.location.reload();
     }
