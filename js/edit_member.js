@@ -16,6 +16,7 @@ async function editPost() {
     $('#editModal').modal('hide');
     window.location.reload();
 }
+
 function init() {
     document.getElementById('edit').addEventListener('click', editPost);
 }

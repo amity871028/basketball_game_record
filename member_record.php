@@ -1,67 +1,11 @@
 
 <html>
     <head>
+        <title>籃球比賽紀錄單-球員紀錄</title>
         <script src='js/lib/fetch-data.js'></script>
         <script src='js/insert_member.js'></script>
         <script src='js/edit_member.js'></script>
-        <style type='text/css'>
-            .title, .search_form {
-                position: relative;
-                left: 3%;
-                top: 3%;
-            }
-            .text {
-                height: 40px;
-                width: 250px;
-            }
-            .search_btn {
-                width: 80px;
-                height: 40px;
-                background: white;
-                color: #23C30C;
-                border-radius: 10px;
-                border-color: #23C30C;
-            }
-            .insert {
-                width: 100px;
-                height: 50px;
-                background: #0C77FA;
-                color: white;
-                border-radius: 10px;
-                border-color: #0C77FA;
-                position: relative;
-                left: 58%;
-            }
-            .member_table {
-                margin-left: auto;
-                margin-right: auto;
-            }
-            .table_title {
-                border-bottom-style: solid;
-                border-color:#FFFFFF #FFFFFF #D9D9D9 #FFFFFF;
-                border-width: 6px;
-            }
-            table {
-                padding: 10px;
-            }
-            th {
-                color: #8C8C8C;
-            }
-            .edit {
-                width: 60px;
-                background: #0C77FA;
-                color: white;
-                border-radius: 5px;
-                border-color: #0C77FA;
-            }
-            .delete {
-                width: 60px;
-                background: red;
-                color: white;
-                border-radius: 5px;
-                border-color: red;
-            }
-        </style>
+        <link rel="stylesheet" href="css/member_record.css">
         <script>
             function edit_text(obj) {
                 value = obj.value;
@@ -156,7 +100,7 @@
                     $stmt->execute();
                     $member_data = $stmt->fetchAll();
                     foreach($member_data as $info) {
-                        echo "<tr><form action='edit_member.php' method='POST'>";
+                        echo "<tr><form action='' method='POST'>";
                         echo "<td name='member_name'>".$info['name']."</td>";
                         echo "<td name='member_number'>".$info['number']."</td>";
                         $positionText = "";
@@ -201,7 +145,7 @@
                         姓名: <input type='text' style='height: 40px; width: 90%;' id='insert_member_name' value=''>
                         <br>
                         <br>
-                        背號: <input type='text' style='height: 40px; width: 60px;' id='insert_member_number' value=''>
+                        背號: <input type='number' min='0' style='height: 40px; width: 60px;' id='insert_member_number' value=''>
                         <br>
                         <br>
                         位置: <select style='height: 40px; width: 90%;' id='insert_member_position' value=''>
@@ -216,10 +160,10 @@
                         生日: <input type='date' id='insert_member_birth' value=''>
                         <br>
                         <br>
-                        身高: <input type='text' style='height: 40px; width: 60px;' id='insert_member_height' value=''>
+                        身高: <input type='number' min='0' style='height: 40px; width: 60px;' id='insert_member_height' value=''>
                         <br>
                         <br>
-                        體重: <input type= 'text' style='height: 40px; width: 60px;' id='insert_member_weight' value=''>
+                        體重: <input type= 'number' min='0' style='height: 40px; width: 60px;' id='insert_member_weight' value=''>
                     </form>
                 </div>
                 <div class='modal-footer'>
@@ -243,7 +187,7 @@
                         姓名: <input type='text' style='height: 40px; width: 90%;' id='edit_member_name' value=''>
                         <br>
                         <br>
-                        背號: <input type='text' style='height: 40px; width: 60px;' id='edit_member_number' value=''>
+                        背號: <input type='number' min='0' style='height: 40px; width: 60px;' id='edit_member_number' value=''>
                         <br>
                         <br>
                         位置: <select style='height: 40px; width: 90%;' id='edit_member_position' value=''>
@@ -258,10 +202,10 @@
                         生日: <input type='date' id='edit_member_birth' value=''>
                         <br>
                         <br>
-                        身高: <input type='text' style='height: 40px; width: 60px;' id='edit_member_height' value=''>
+                        身高: <input type='number' min='0' style='height: 40px; width: 60px;' id='edit_member_height' value=''>
                         <br>
                         <br>
-                        體重: <input type='text' style='height: 40px; width: 60px;' id='edit_member_weight' value=''>
+                        體重: <input type='number' min='0' style='height: 40px; width: 60px;' id='edit_member_weight' value=''>
                     </form>
                 </div>
                 <div class='modal-footer'>
