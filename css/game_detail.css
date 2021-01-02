@@ -5,3 +5,22 @@
 #point-tbody input, #foul-tbody input {
     width: 60px;
 }
+
+.divide-3 {
+    width: 33% !important;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.thead-dark {
+    text-align: center;
+}
+
+.display-80p {
+    width: 80% !important;
+}
+
+#edit-btn {
+    position: absolute;
+    right: 20px;
+}

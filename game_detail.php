@@ -10,12 +10,12 @@
             include("narvbar.php");
             include("src/connect_db.php");
         ?>
-        
+
         <button type="button" class="btn btn-primary" id="edit-btn">編輯</button>
-        <table class="table">
+        <table class="table table-hover display-80p">
             <thead class="thead-dark">
                 <tr>
-                    <td colspan = "4">比賽基本資訊</td>
+                    <th colspan = "4">比賽基本資訊</td>
                 </tr>
             </thead>
             <tbody id = "game-detail-tbody">
@@ -24,42 +24,52 @@
                     $query = ("SELECT * FROM game WHERE id = ?");
                     $stmt = $db->prepare($query);
                     $error = $stmt->execute(array($id));
-                    $game = $stmt->fetchAll();
+                    $game = $stmt->fetch();
                     
                     $query = ("SELECT (first_period_point+second_period_point+third_period_point+fourth_period_point) AS total_point FROM team_performance WHERE game_id = ? AND team = ?");
                     $stmt = $db->prepare($query);
                     $error = $stmt->execute(array($id, 'home'));
+                    /*
+                    if($error){
+                        $query = ("INSERT INTO team_performance VALUES(?,?,?,?,?,?,?,?,?,?)");
+                        $stmt = $db->prepare($query);
+                        $result = $stmt->execute(array($id, 'home', 0, 0, 0, 0, 0, 0, 0, 0));
+                        $result = $stmt->execute(array($id, 'guest', 0, 0, 0, 0, 0, 0, 0, 0));
+                        echo '<script>window.location.reload();</script>'; 
+                    }*/
                     $homeTeam = $stmt->fetch();
                     $homeTeamPoint = $homeTeam['total_point'];
-                    
+
                     $error = $stmt->execute(array($id, 'guest'));
                     $guestTeam = $stmt->fetch();
                     $guestTeamPoint = $guestTeam['total_point'];
 
                     echo '<tr>'.
                             '<td>比賽名稱</td>'.
-                            '<td>'.$game[0]['name'].'</td>'.
+                            '<td>'.$game['name'].'</td>'.
                             '<td>賽次</td>'.
-                            '<td>'.$game[0]['type'].'</td>'.
+                            '<td>'.$game['type'].'</td>'.
                          '</tr>'.
                          '<tr>'.
                             '<td>比賽時間</td>'.
-                            '<td colspan = "3">'.$game[0]['date'].'</td>'.
+                            '<td colspan = "3">'.$game['date'].'</td>'.
                          '</tr>';
-                    if($game[0]['team'] == 'home'){
+                    if($game['team'] == 'home'){
+                        $team = 'home';
                         echo '<tr>'.
                                 '<td>主場隊伍</td>'.
-                                '<td>海洋大學</td>'.
+                                '<td><span name="team-name"></span></td>'.
                                 '<td>客場隊伍</td>'.
-                                '<td>'.$game[0]['competitor'].'</td>'.
+                                '<td>'.$game['competitor'].'</td>'.
                              '</tr>';
                     }
                     else {
+                        $team = 'guest';
                         echo '<tr>'.
                                 '<td>主場隊伍</td>'.
-                                '<td>'.$game[0]['competitor'].'</td>'.
+                                '<td>'.$game['competitor'].'</td>'.
                                 '<td>客場隊伍</td>'.
-                                '<td>海洋大學</td>'.
+                                '<td><span name="team-name"></span></td>'.
                              '</tr>';
                     }
                     echo '<tr>'.
@@ -72,10 +82,10 @@
                             '<td>獲勝隊伍</td>'.
                             '<td colspan = "3">';
                     if($homeTeamPoint > $guestTeamPoint){
-                        echo '海洋大學';
+                        echo '<span name="team-name"></span>';
                     }
                     else if($homeTeamPoint > $guestTeamPoint){
-                        echo $game[0]['competitor'];
+                        echo $game['competitor'];
                     }
                     echo '</td>'.
                         '</tr>';
@@ -83,9 +93,9 @@
             <tbody>
         </table>
         <button type="button" class="btn btn-primary" style="display: none;" id="add-field-btn" data-toggle="modal" data-target="#add-field-modal">新增欄位</button>
-        <table class="table">
-            <thead class="thead-dark">
-                <tr>
+        <table class="table table-hover">
+            <thead>
+                <tr class="table-primary">
                     <td>球員</td>
                     <td>背號</td>
                     <td>投籃命中</td>
@@ -148,10 +158,10 @@
             </tbody>
         </table>
         
-        <table class="table">
+        <table class="table table-hover divide-3">
             <thead class="thead-dark">
                 <tr>
-                    <td colspan="5">比分</td>
+                    <th colspan="5">比分</th>
                 </tr>
                 <tr>
                     <td></td>
@@ -190,10 +200,10 @@
             </tbody>
         </table>
         
-        <table class="table">
+        <table class="table table-hover divide-3">
             <thead class="thead-dark">
                 <tr>
-                    <td colspan="5">團體犯規</td>
+                    <th colspan="5">團體犯規</th>
                 </tr>
                 <tr>
                     <td></td>
@@ -230,14 +240,14 @@
                         '</tr>';
                 ?>
             </tbody>
-
-            <table class="table">
+        </table>
+        
+        <table class="table table-hover divide-3">
             <thead class="thead-dark">
                 <tr>
-                    <td colspan="5">團體數據</td>
+                    <th colspan="4">團體數據</th>
                 </tr>
                 <tr>
-                    <td></td>
                     <td>出手命中</td>
                     <td>三分球命中</td>
                     <td>罰球命中</td>
@@ -246,29 +256,25 @@
             </thead>
             <tbody>
                 <?php
-                     $query = ("SELECT * FROM member_performance WHERE game_id = ?");
-                     /*$stmt = $db->prepare($query);
-                     $error = $stmt->execute(array($id, "home"));
-                     $homeDetail = $stmt->fetch();
-                     
-                     $error = $stmt->execute(array($id, "guest"));
-                     $guestDetail = $stmt->fetch();
-
-                    echo '<tr>'.
-                            '<td>主隊</td>'.
-                            '<td>'.$homeDetail['first_period_foul'].'</td>'.
-                            '<td>'.$homeDetail['second_period_foul'].'</td>'.
-                            '<td>'.$homeDetail['third_period_foul'].'</td>'.
-                            '<td>'.$homeDetail['fourth_period_foul'].'</td>'.
-                        '</tr>'.
-                        
-                        '<tr>'.
-                            '<td>客隊</td>'.
-                            '<td>'.$guestDetail['first_period_foul'].'</td>'.
-                            '<td>'.$guestDetail['second_period_foul'].'</td>'.
-                            '<td>'.$guestDetail['third_period_foul'].'</td>'.
-                            '<td>'.$guestDetail['fourth_period_foul'].'</td>'.
-                        '</tr>';*/
+                    $query = ("SELECT SUM(field_goal) AS sum_field_goal, SUM(three_point_shot) AS sum_three_point_shot, SUM(free_throw) AS sum_free_throw, SUM(offensive_rebound + defensive_rebound) AS sum_rebound FROM member_performance WHERE game_id = ? GROUP BY game_id");
+                    $stmt = $db->prepare($query);
+                    $error = $stmt->execute(array($id));
+                    $teamDetail = $stmt->fetch();
+                    if($teamDetail){
+                        echo '<tr>'.
+                            '<td>'.$teamDetail['sum_field_goal'].'</td>'.
+                            '<td>'.$teamDetail['sum_three_point_shot'].'</td>'.
+                            '<td>'.$teamDetail['sum_free_throw'].'</td>'.
+                            '<td>'.$teamDetail['sum_rebound'].'</td>';
+                    }
+                    else {
+                        echo '<tr>'.
+                        '<td>0</td>'.
+                        '<td>0</td>'.
+                        '<td>0</td>'.
+                        '<td>0</td>';
+                    }
+                    
                 ?>
             </tbody>
         </table>
