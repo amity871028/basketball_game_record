@@ -142,13 +142,13 @@
                 </div>
                 <div class='modal-body'>
                     <form name='insert_form' action='' method='POST'>
-                        姓名: <input type='text' style='height: 40px; width: 90%;' id='insert_member_name' value=''>
+                        姓名: <input type='text' style='height: 40px; width: 90%;' id='insert_member_name' required>
                         <br>
                         <br>
-                        背號: <input type='number' min='0' style='height: 40px; width: 60px;' id='insert_member_number' value=''>
+                        背號: <input type='number' min='0' style='height: 40px; width: 60px;' id='insert_member_number' required>
                         <br>
                         <br>
-                        位置: <select style='height: 40px; width: 90%;' id='insert_member_position' value=''>
+                        位置: <select style='height: 40px; width: 90%;' id='insert_member_position' required>
                             <option value='PG'>PG(控球後衛)</option>
                             <option value='SG'>SG(得分後衛)</option>
                             <option value='SF'>SF(小前鋒)</option>
@@ -157,13 +157,13 @@
                         </select>
                         <br>
                         <br>
-                        生日: <input type='date' id='insert_member_birth' value=''>
+                        生日: <input type='date' id='insert_member_birth' required>
                         <br>
                         <br>
-                        身高: <input type='number' min='0' style='height: 40px; width: 60px;' id='insert_member_height' value=''>
+                        身高: <input type='number' min='0' style='height: 40px; width: 60px;' id='insert_member_height' required>
                         <br>
                         <br>
-                        體重: <input type= 'number' min='0' style='height: 40px; width: 60px;' id='insert_member_weight' value=''>
+                        體重: <input type= 'number' min='0' style='height: 40px; width: 60px;' id='insert_member_weight' required>
                     </form>
                 </div>
                 <div class='modal-footer'>
@@ -184,13 +184,13 @@
                 </div>
                 <div class='modal-body'>
                     <form name='edit_form' action='' method='POST'>
-                        姓名: <input type='text' style='height: 40px; width: 90%;' id='edit_member_name' value=''>
+                        姓名: <input type='text' style='height: 40px; width: 90%;' id='edit_member_name' required>
                         <br>
                         <br>
-                        背號: <input type='number' min='0' style='height: 40px; width: 60px;' id='edit_member_number' value=''>
+                        背號: <input type='number' min='0' style='height: 40px; width: 60px;' id='edit_member_number' required>
                         <br>
                         <br>
-                        位置: <select style='height: 40px; width: 90%;' id='edit_member_position' value=''>
+                        位置: <select style='height: 40px; width: 90%;' id='edit_member_position'>
                             <option value='PG'>PG(控球後衛)</option>
                             <option value='SG'>SG(得分後衛)</option>
                             <option value='SF'>SF(小前鋒)</option>
@@ -199,13 +199,13 @@
                         </select>
                         <br>
                         <br>
-                        生日: <input type='date' id='edit_member_birth' value=''>
+                        生日: <input type='date' id='edit_member_birth' required>
                         <br>
                         <br>
-                        身高: <input type='number' min='0' style='height: 40px; width: 60px;' id='edit_member_height' value=''>
+                        身高: <input type='number' min='0' style='height: 40px; width: 60px;' id='edit_member_height' required>
                         <br>
                         <br>
-                        體重: <input type='number' min='0' style='height: 40px; width: 60px;' id='edit_member_weight' value=''>
+                        體重: <input type='number' min='0' style='height: 40px; width: 60px;' id='edit_member_weight' required>
                     </form>
                 </div>
                 <div class='modal-footer'>
