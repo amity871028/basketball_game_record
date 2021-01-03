@@ -30,14 +30,14 @@
                     <span style = "font-size:30px;">新增場次</span>
                     <hr>
                     <form action = "src/new_game_record.php" method= "post" style=" margin-left:100px;">
-                        名稱 : <input type = "text" value="" name="name"><br>
-                        賽次 : <input type="text" value="" name="type"><br>
+                        名稱 : <input type = "text" value="" name="name" required><br>
+                        賽次 : <input type="text" value="" name="type" required><br>
                         主/客隊 : <select style = "margin-bottom:10px;" name="team">
                         　      <option value="home">主隊</option>
                         　      <option value="guest">客隊</option>
                             </select><br>
-                        對手 : <input type = "text" value="" name="competitor"><br>
-                        日期 : <input type="datetime-local" name="date">
+                        對手 : <input type = "text" value="" name="competitor" required><br>
+                        日期 : <input type="datetime-local" name="date" required>
                             <br>
                         <hr>
                         <div class="container" >
@@ -58,7 +58,6 @@
             <tr>
             <th>名稱</th>
             <th data-th=\"Driver details\"><span>賽次</span></th>
-            <th>隊伍名稱</th>
             <th>主/客隊</th>
             <th>對手</th>
             <th>日期</th>
@@ -89,11 +88,6 @@
                     echo "<tr>";
                     echo "<td>".$result[$i]['name']."</td>";
                     echo "<td>".$result[$i]['type']."</td>";
-                    echo "  <script>  
-                                var team_name = localStorage.getItem(\"team_name\");
-                                var str = \"<td>\" + team_name + \"</td>\"
-                                document.write(str);
-                            </script>";
                     if ($result[$i]['team'] == "home") 
                     {
                         echo "<td>主隊</td>";
