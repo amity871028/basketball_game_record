@@ -151,7 +151,22 @@ async function deleteField(e){
     window.location.reload();
 }
 
+function setTeamName(){
+    if(localStorage.getItem('team_name')){
+        let teamName = localStorage.getItem('team_name');
+        let teamNameSpans = document.getElementsByName('team-name');
+        teamNameSpans.forEach(each => {
+            each.innerHTML = teamName;
+        });
+    }
+    else {
+        alert('還沒設定你的隊伍名稱！');
+        window.location.href = "index.php";
+    }
+}
+
 function init(){
+    setTeamName();
     document.getElementById('edit-btn').addEventListener('click', editData);
 
     let memberNameSelection = document.getElementsByName('member-name');

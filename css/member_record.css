@@ -1,0 +1,56 @@
+.title, .search_form {
+    position: relative;
+    left: 3%;
+    top: 3%;
+}
+.text {
+    height: 40px;
+    width: 250px;
+}
+.search_btn {
+    width: 80px;
+    height: 40px;
+    background: white;
+    color: #23C30C;
+    border-radius: 10px;
+    border-color: #23C30C;
+}
+.insert {
+    width: 100px;
+    height: 50px;
+    background: #0C77FA;
+    color: white;
+    border-radius: 10px;
+    border-color: #0C77FA;
+    position: relative;
+    left: 58%;
+}
+.member_table {
+    margin-left: auto;
+    margin-right: auto;
+}
+.table_title {
+    border-bottom-style: solid;
+    border-color:#FFFFFF #FFFFFF #D9D9D9 #FFFFFF;
+    border-width: 6px;
+}
+table {
+    padding: 10px;
+}
+th {
+    color: #8C8C8C;
+}
+.edit {
+    width: 60px;
+    background: #0C77FA;
+    color: white;
+    border-radius: 5px;
+    border-color: #0C77FA;
+}
+.delete {
+    width: 60px;
+    background: red;
+    color: white;
+    border-radius: 5px;
+    border-color: red;
+}
