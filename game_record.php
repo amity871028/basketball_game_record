@@ -6,24 +6,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>比賽紀錄</title>
+    <title>籃球比賽紀錄單-比賽紀錄</title>
     <link rel="stylesheet" type="text/css" href="css/game_record.css">
     <style></style>
     <script src = js/game_record.js></script>
 
 </head>
     <body>
-        <div class = "d1">
+        <div class ="d1">
             <div class="container">
                 <h1>籃球比賽紀錄</h1>
                 <form action="" method="POST">
                     <input type="text" placeholder="比賽名稱" class="t1" name = "game_name">
                     <input type="submit" value="Search" class="btn btn-outline-success">
-                    <svg>
-                    <rect x="0" y="0" fill="none" width="100%" height="100%"/>
-                    </svg>
-                    <input type= "button" value="新增場次" class="btn btn-primary" onclick="add()"> 
+                    <input type= "button" value="新增場次" class="btn btn-primary insert" onclick="add()"> 
                 </form>
+                
             </div>   
             <div id="contes" class = 'f1'> 
                 <div style ="width:500px;height:40px">

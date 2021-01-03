@@ -12,10 +12,10 @@
         ?>
 
         <button type="button" class="btn btn-primary" id="edit-btn">編輯</button>
-        <table class="table table-hover display-80p">
-            <thead class="thead-dark">
+        <table class="table table-hover display-80p responstable">
+            <thead >
                 <tr>
-                    <th colspan = "4">比賽基本資訊</td>
+                    <th colspan = "4">比賽基本資訊</th>
                 </tr>
             </thead>
             <tbody id = "game-detail-tbody">
@@ -84,9 +84,12 @@
                 ?>
             <tbody>
         </table>
-        <button type="button" class="btn btn-primary" style="display: none;" id="add-field-btn" data-toggle="modal" data-target="#add-field-modal">新增欄位</button>
-        <table class="table table-hover">
+        <button type="button" class="btn btn-primary " style="display: none;" id="add-field-btn" data-toggle="modal" data-target="#add-field-modal">新增欄位</button>
+        <table class="table table-hover responstable">
             <thead>
+                <tr>
+                    <th colspan = "17">比賽球員數據</th>
+                </tr>
                 <tr class="table-primary">
                     <td>球員</td>
                     <td>背號</td>
@@ -138,9 +141,8 @@
                 ?>
             </tbody>
         </table>
-        
-        <table class="table table-hover divide-3">
-            <thead class="thead-dark">
+        <table class="table table-hover divide-3 responstable">
+            <thead>
                 <tr>
                     <th colspan="5">比分</th>
                 </tr>
@@ -181,8 +183,8 @@
             </tbody>
         </table>
         
-        <table class="table table-hover divide-3">
-            <thead class="thead-dark">
+        <table class="table table-hover divide-3 responstable">
+            <thead>
                 <tr>
                     <th colspan="5">團體犯規</th>
                 </tr>
@@ -223,8 +225,8 @@
             </tbody>
         </table>
         
-        <table class="table table-hover divide-3">
-            <thead class="thead-dark">
+        <table class="table table-hover divide-3 responstable">
+            <thead >
                 <tr>
                     <th colspan="4">團體數據</th>
                 </tr>

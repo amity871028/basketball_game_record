@@ -34,28 +34,30 @@
             ob_start();
         ?>
         <span>
+        <div class="d1">
+        <div class="container">
             <h1 class='title'>球員紀錄</h1>
             <form style='display: inline;' class='search_form' action='' method='POST'>
                 <input type='text' class='text' name='text' placeholder='球員姓名(空白為全部球員)'>
                 <input type='submit' class='search_btn' name='search' value='Search'>
             </form>
-        </span>
-        <span>
             <button class='insert' data-toggle='modal' data-target='#myModal'>新增球員</button>
         </span>
-<?php
-    if(!empty($_POST['text'])) {
-        $search_name = $_POST['text'];
-        $query = ("SELECT count(*) AS countMem FROM member WHERE name=?");
-        $stmt = $db->prepare($query);
-        $stmt->execute(array($search_name));
-        $member_count = $stmt->fetchAll();
-        foreach($member_count as $info) {
-            echo "<p><h6 class='title'>共有".$info['countMem']."位球員</h6></p>";
-        }
-?>
-        <p>
-            <table class='member_table' width='70%'>
+        <?php
+            if(!empty($_POST['text'])) {
+                $search_name = $_POST['text'];
+                $query = ("SELECT count(*) AS countMem FROM member WHERE name=?");
+                $stmt = $db->prepare($query);
+                $stmt->execute(array($search_name));
+                $member_count = $stmt->fetchAll();
+                foreach($member_count as $info) {
+                    echo "<p><h6 class='title'>共有".$info['countMem']."位球員</h6></p>";
+                }
+        ?>
+        </div>  
+
+        <br><br><p>
+            <table class='responstable' >
                 <tr class='table_title'>
                     <th width='13%'>姓名</th>
                     <th width='12%'>背號</th>
@@ -99,7 +101,7 @@
                         echo "<p><h6 class='title'>共有".$info['countMem']."位球員</h6></p>";
                     }
 
-                    echo "<p><table class='member_table' id='all_member_table' width='70%'>
+                    echo "<p><table class='responstable' id='all_member_table'>
                         <tr class='table_title'><th width='13%'>姓名</th><th width='12%'>背號</th><th width='15%'>位置</th><th width='19%'>生日</th><th width='12%'>身高</th><th width='10%'>體重</th><th width='19%'>動作</th></tr>";
 
                     $query = ("SELECT * FROM member");
@@ -222,8 +224,7 @@
             </div>
         </div>
     </div>
-
-    </body></html>
+    </div></body></html>
     <?php
     ob_end_flush();
 ?>
