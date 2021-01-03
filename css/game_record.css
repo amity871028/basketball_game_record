@@ -1,0 +1,128 @@
+input{
+    margin-bottom:10px;
+}
+.f1 {
+    background: rgba(235, 244, 255, 0.9);
+    padding: 40px;
+    max-width: 600px;
+    margin: 40px auto;
+    border-radius: 4px;
+    box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
+}
+#all_light {
+    opacity:0.4;
+    width:100%;
+    height:2300px;
+    background:	#D2E9FF; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    display:none;
+    z-index:1;
+}
+#contes{
+    width: 500px;
+    height:500px;
+    display:none;
+    z-index:2;
+    position:absolute;
+    top:100px;
+    left:400px;
+
+}
+.responstable {
+    margin: 1em 0;
+    width: 100%;
+    overflow: hidden;
+    background: #FFF;
+    color: #024457;
+    border-radius: 10px;
+    border: 1px solid #167F92;
+}
+.responstable tr {
+    border: 1px solid #D9E4E6;
+}
+.responstable tr:nth-child(odd) {
+    background-color: #EAF3F3;
+}
+.responstable th {
+    display: none;
+    border: 1px solid #FFF;
+    background-color: #167F92;
+    color: #FFF;
+    padding: 1em;
+}
+.responstable th:first-child {
+    display: table-cell;
+    text-align: center;
+}
+.responstable th:nth-child(2) {
+    display: table-cell;
+}
+.responstable th:nth-child(2) span {
+    display: none;
+}
+.responstable th:nth-child(2):after {
+    content: attr(data-th);
+}@media (min-width: 480px) {
+    .responstable th:nth-child(2) span {
+        display: block;
+    }
+    .responstable th:nth-child(2):after {
+        display: none;
+    }
+}
+.responstable td {
+    display: block;
+    word-wrap: break-word;
+    max-width: 7em;
+}
+.responstable td:first-child {
+    display: table-cell;
+    text-align: center;
+    border-right: 1px solid #D9E4E6;
+}
+@media (min-width: 480px) {
+    .responstable td {
+        border: 1px solid #D9E4E6;
+    }
+}
+.responstable th, .responstable td {
+    text-align: left;
+    margin: .5em 1em;
+}
+@media (min-width: 480px) {
+    .responstable th, .responstable td {
+        display: table-cell;
+        padding: 1em;
+    }
+}
+
+body {
+    padding: 0 2em;
+    font-family: Arial, sans-serif;
+    color: #024457;
+    background: #f2f2f2;
+    font-weight: 400;
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+}
+
+h1 {
+    font-family: Verdana;
+    font-weight: normal;
+    color: #024457;
+}
+h1 span {
+    color: #167F92;
+}
+        
+.d1{
+    padding: 50px 50px;
+}
+
+.t1{
+    font-size: 25px;
+}
+
