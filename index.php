@@ -14,7 +14,7 @@
 <body>
     <div class="container" style="position: relative;top: 200px;" >
         <div class="row justify-content-between">
-            <div class="col-4"><input type="button" value="比賽紀錄" class ="btn" onclick="jump_game()"></div>
+            <div class="col-4"><input type="button" value="比賽紀錄" class ="btn" onclick="location.href='game_record.php'"></div>
             <div class="col-4"><input type="button" value="球員紀錄" class ="btn" onclick="location.href='member_record.php'" style="margin:0 auto;"></div>
         </div>
     </div>

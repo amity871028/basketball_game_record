@@ -11,4 +11,11 @@ function set_team_name() {
     localStorage.setItem("Key",String(y));
 }
 
+function init(){
+    if(!localStorage.getItem('team_name')){
+        alert('尚未設定隊伍名！');
+        location.href = 'index.php';
+    }
+}
 
+window.addEventListener('load', init);

@@ -7,6 +7,12 @@
         <script src='js/edit_member.js'></script>
         <link rel="stylesheet" href="css/member_record.css">
         <script>
+        
+            if(!localStorage.getItem('team_name')){
+                alert('尚未設定隊伍名！');
+                location.href = 'index.php';
+            }
+
             function edit_text(obj) {
                 value = obj.value;
                 arr = value.split('_');
@@ -18,6 +24,7 @@
                 document.getElementById('edit_member_height').value = arr[4];
                 document.getElementById('edit_member_weight').value = arr[5];
             }
+            
         </script>
     </head>
     <body>

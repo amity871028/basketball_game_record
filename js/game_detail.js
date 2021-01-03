@@ -166,6 +166,11 @@ function setTeamName(){
 }
 
 function init(){
+    if(!localStorage.getItem('team_name')){
+        alert('尚未設定隊伍名！');
+        location.href = 'index.php';
+    }
+
     setTeamName();
     document.getElementById('edit-btn').addEventListener('click', editData);
 
