@@ -29,14 +29,6 @@
                     $query = ("SELECT (first_period_point+second_period_point+third_period_point+fourth_period_point) AS total_point FROM team_performance WHERE game_id = ? AND team = ?");
                     $stmt = $db->prepare($query);
                     $error = $stmt->execute(array($id, 'home'));
-                    /*
-                    if($error){
-                        $query = ("INSERT INTO team_performance VALUES(?,?,?,?,?,?,?,?,?,?)");
-                        $stmt = $db->prepare($query);
-                        $result = $stmt->execute(array($id, 'home', 0, 0, 0, 0, 0, 0, 0, 0));
-                        $result = $stmt->execute(array($id, 'guest', 0, 0, 0, 0, 0, 0, 0, 0));
-                        echo '<script>window.location.reload();</script>'; 
-                    }*/
                     $homeTeam = $stmt->fetch();
                     $homeTeamPoint = $homeTeam['total_point'];
 
@@ -117,26 +109,15 @@
             </thead>
             <tbody id = "member-performance-tbody">
                 <?php
-                    $query = ("SELECT * FROM member_performance WHERE game_id = ?");
-                    $stmt = $db->prepare($query);
-                    $error = $stmt->execute(array($id));
-                    $member = $stmt->fetchAll();
-                    
+                    $query = ("SELECT *, (field_goal + free_throw + three_point_shot) AS total_points FROM member_performance NATURAL JOIN member WHERE game_id = ?");
+                        $stmt = $db->prepare($query);
+                        $error = $stmt->execute(array($id));
+                        $member = $stmt->fetchAll();
+
                     for($i=0; $i<count($member); $i++){
-                        $query = ("SELECT name FROM member WHERE number = ?");
-                        $number = $member[$i]['number'];
-                        $stmt = $db->prepare($query);
-                        $error = $stmt->execute(array($number));
-                        $memberDetail = $stmt->fetch();
-                        
-                        $query = ("SELECT (field_goal + free_throw + three_point_shot) AS total_points FROM `member_performance` WHERE `game_id` = ? AND `number` = ?");
-                        $stmt = $db->prepare($query);
-                        $error = $stmt->execute(array($id, $number));
-                        $totalPoints = $stmt->fetch();
-                        
                         echo '<tr>'.
-                                '<td>'.$memberDetail['name'].'</td>'.
-                                '<td>'.$number.'</td>'.
+                                '<td>'.$member[$i]['name'].'</td>'.
+                                '<td>'.$member[$i]['number'].'</td>'.
                                 '<td>'.$member[$i]['field_goal'].'</td>'.
                                 '<td>'.$member[$i]['field_goal_attempt'].'</td>'.
                                 '<td>'.$member[$i]['three_point_shot'].'</td>'.
@@ -150,8 +131,8 @@
                                 '<td>'.$member[$i]['block_shot'].'</td>'.
                                 '<td>'.$member[$i]['turnover'].'</td>'.
                                 '<td>'.$member[$i]['foul'].'</td>'.
-                                '<td>'.$totalPoints['total_points'].'</td>'.
-                                '<td><button type="button" class="btn btn-primary" id="delete-'.$number.'" onclick="deleteField(this)">刪除</button></td>'.
+                                '<td>'.$member[$i]['total_points'].'</td>'.
+                                '<td><button type="button" class="btn btn-primary" id="delete-'.$member[$i]['number'].'" onclick="deleteField(this)">刪除</button></td>'.
                              '</tr>';
                     }
                 ?>
