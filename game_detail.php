@@ -47,7 +47,6 @@
                             '<td colspan = "3">'.$game['date'].'</td>'.
                          '</tr>';
                     if($game['team'] == 'home'){
-                        $team = 'home';
                         echo '<tr>'.
                                 '<td>主場隊伍</td>'.
                                 '<td><span name="team-name"></span></td>'.
@@ -56,7 +55,6 @@
                              '</tr>';
                     }
                     else {
-                        $team = 'guest';
                         echo '<tr>'.
                                 '<td>主場隊伍</td>'.
                                 '<td>'.$game['competitor'].'</td>'.
@@ -74,10 +72,16 @@
                             '<td>獲勝隊伍</td>'.
                             '<td colspan = "3">';
                     if($homeTeamPoint > $guestTeamPoint){
-                        echo '<span name="team-name"></span>';
+                        if($game['team'] == 'home'){
+                            echo '<span name="team-name"></span>';
+                        }
+                        else echo $game['competitor'];
                     }
-                    else if($homeTeamPoint > $guestTeamPoint){
-                        echo $game['competitor'];
+                    else if($homeTeamPoint < $guestTeamPoint){
+                        if($game['team'] == 'home'){
+                            echo $game['competitor'];
+                        }
+                        else echo '<span name="team-name"></span>';
                     }
                     echo '</td>'.
                         '</tr>';
